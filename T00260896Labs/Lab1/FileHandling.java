@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public class FileHandling {
     public static void main(String[] args) {
-        String fileName = "/workspace/MTUSep24DSC/02. Java Collections Framework/Lab/hamlet.txt";
+        // Adjust the file path accordingly
+        String fileName = "C:\\Users\\alper\\Downloads\\DataStructureLabs\\T00260896Labs\\Lab1\\hamlet.txt";
 
         try {
             Scanner in = new Scanner(new File(fileName));
@@ -15,14 +16,14 @@ public class FileHandling {
                 lineParser.useDelimiter("[^A-Za-z0-9]+");
                 while (lineParser.hasNext()) {
                     String word = lineParser.next();
-                    System.out.println("''"+ word + lineNumber);
+                    System.out.println("'" + word + "' " + lineNumber);
                 }
-                in.close(); 
-                lineParser.close();
+                lineNumber++; // Increment line number after processing each line
+                lineParser.close(); // Close lineParser after each line, not `in`
             }
+            in.close(); // Close the file scanner after processing all lines
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 }

@@ -1,4 +1,5 @@
 import java.util.NoSuchElementException;
+//singly linked list with first reference only 
 
 /**
  * A linked list is a sequence of links with efficient
@@ -6,27 +7,20 @@ import java.util.NoSuchElementException;
  * contains a subset of the methods of the standard
  * java.util.LinkedList class.
  */
+
 public class CP3LinkedList<E> {
-
-	private static class Node<E> {
-		private E data;
-		private Node<E> next;
-
-		public Node(E data) {
-			this.data = data;
-			this.next = null;
-		}
+	private class Node {
+		public E data;
+		public Node next;
 	}
 
-	private Node<E> head;
-	private int size;
+	private Node first;
 
 	/**
 	 * Constructs an empty linked list.
 	 */
 	public CP3LinkedList() {
-		head = null;
-		size = 0;
+		first = null;
 	}
 
 	/**
@@ -35,73 +29,32 @@ public class CP3LinkedList<E> {
 	 * @param element the element to add
 	 */
 	public void addFirst(E element) {
-		Node<E> newNode = new Node<>(element);
-		newNode.next = head;
-		head = newNode;
-		size++;
+		Node newLink = new Node();
+		newLink.data = element;
+		newLink.next = first;
+		first = newLink;
 	}
 
-	/**
-	 * Retrieves the first element in the list.
-	 * 
-	 * @return the first element
-	 * @throws NoSuchElementException if the list is empty
-	 */
 	public E getFirst() {
-		if (head == null)
-			throw new NoSuchElementException("List is empty");
-		return head.data;
+		if (first == null)
+			throw new NoSuchElementException();
+		return first.data;
 	}
 
-	/**
-	 * Removes the first element in the list.
-	 * 
-	 * @return the removed element
-	 * @throws NoSuchElementException if the list is empty
-	 */
 	public E removeFirst() {
-		if (head == null)
-			throw new NoSuchElementException("List is empty");
-		E element = head.data;
-		head = head.next;
-		size--;
+		if (first == null)
+			throw new NoSuchElementException();
+		E element = first.data;
+		first = first.next;
 		return element;
 	}
 
-	/**
-	 * Prints all elements in the linked list.
-	 */
 	public void print() {
-		Node<E> current = head;
+		// outputs the data on the list
+		Node current = first;
 		while (current != null) {
 			System.out.println(current.data);
 			current = current.next;
 		}
-	}
-
-	/**
-	 * Checks if the list is empty.
-	 * 
-	 * @return true if the list is empty, false otherwise
-	 */
-	public boolean isEmpty() {
-		return size == 0;
-	}
-
-	/**
-	 * Gets the size of the linked list.
-	 * 
-	 * @return the number of elements in the list
-	 */
-	public int size() {
-		return size;
-	}
-
-	/**
-	 * Clears all elements from the list.
-	 */
-	public void clear() {
-		head = null;
-		size = 0;
 	}
 }

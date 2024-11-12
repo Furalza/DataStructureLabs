@@ -1,3 +1,4 @@
+
 /*****************************************************
  *	Title: SpellCheck source code
  *	Author: Horstmann
@@ -15,31 +16,34 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
-   This program checks which words in a file are not present in a dictionary.
-*/
+ * This program checks which words in a file are not present in a dictionary.
+ */
 public class SpellCheck {
 
    public static void main(String[] args)
-           throws FileNotFoundException {
+         throws FileNotFoundException {
       // Read the dictionary and the document
 
-      Collection<String> dictionaryWords = readDictionary("words");
-      //Set<String> documentWords = readWords("alice30.txt");
-      Set<String> documentWords = readWords("war-and-peace.txt"); // file to be spell-checked
+      Collection<String> dictionaryWords = readDictionary(
+            "C:\\Users\\alper\\Downloads\\DataStructureLabs\\T00260896Labs\\Lab5\\words.txt");
+      // Set<String> documentWords = readWords("alice30.txt");
+      Set<String> documentWords = readWords(
+            "C:\\Users\\alper\\Downloads\\DataStructureLabs\\T00260896Labs\\Lab5\\war-and-peace.txt"); // file to be
+                                                                                                       // spell-checked
 
       // Print all words that are in the document but not the dictionary
       int numberMisspeltWords = 0;
       for (String word : documentWords) {
          if (!dictionaryWords.contains(word)) {
             numberMisspeltWords++;
-            //System.out.println(word);
+            // System.out.println(word);
          }
       }
       System.out.println("Number of misspelt words: " + numberMisspeltWords);
    }
 
    private static Collection<String> readDictionary(String filename)
-           throws FileNotFoundException {
+         throws FileNotFoundException {
       Collection<String> words = new LinkedList<String>();
       Scanner in = new Scanner(new File(filename));
       // Use any characters other than a-z or A-Z as delimiters
@@ -55,10 +59,10 @@ public class SpellCheck {
     *
     * @param filename the name of the file
     * @return a set with all lowercased words in the file. Here, a
-    * word is a sequence of upper- and lowercase letters.
+    *         word is a sequence of upper- and lowercase letters.
     */
    public static Set<String> readWords(String filename)
-           throws FileNotFoundException {
+         throws FileNotFoundException {
       Set<String> words = new HashSet<String>();
       Scanner in = new Scanner(new File(filename));
       // Use any characters other than a-z or A-Z as delimiters
